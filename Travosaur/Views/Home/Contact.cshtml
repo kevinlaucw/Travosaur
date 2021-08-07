@@ -1,0 +1,102 @@
+﻿@model Travosaur.Models.ContactFormModel
+@{
+    ViewBag.Title = "Contact";
+}
+<h2>@ViewBag.Title</h2>
+
+<address>
+    92 The Avenue,<br />
+    Parkville, Melbourne VIC 3052
+</address>
+<abbr title="Phone">P: </abbr>+61 4 3506 0477<br />
+<abbr title="Email">E: </abbr><a href="mailto:support@travosaur.com">Support@travosaur.com</a>
+
+<div id="formSection">
+    <h4>@ViewBag.SendMessage</h4>
+
+    <form method="post" id="contactForm">
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <p>
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Full name*" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </p>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-10">
+                <p>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email address*" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <p>
+                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Contact number" } })
+                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <p>
+                    @Html.EditorFor(model => model.Message, new
+                       {
+                           htmlAttributes = new
+                           {
+                               @id = "message",
+                               @class = "form-control contact-message",
+                               @placeholder = "Message*",
+                               @maxlength = "150",
+                               @data_bind = "value:message, valueUpdate:'input'"
+                           }
+                       })
+
+                    <span data-bind="text:charactersRemaining"></span> characters remaining
+
+                    @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Send" class="btn btn-default" />
+                <span class="glyphicon glyphicon-send" aria-hidden="true" id="progress" style="display:none;"></span>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+@section scripts {
+    <script src="~/Scripts/knockout-3.4.0.js"></script>
+    <script>
+        function ContactViewModel() {
+            var self = this;
+            self.message = ko.observable('');
+            self.charactersRemaining = ko.computed(function () {
+                return 150 - self.message().length;
+            })
+        }
+        ko.applyBindings(new ContactViewModel());
+    </script>
+
+    <script>
+        $('#contactForm').submit(function () {
+            $('#progress').show();
+            $.post('', { message: $('#message').val() })
+                .done(function (response) {
+                    setTimeout(function () { $('#formSection').html(response); }, 2000);
+                });
+            return false;
+        });
+    </script>
+}

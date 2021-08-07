@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="TravosaurDbContext">
+    <EntitySetMapping Name="TourTypes">
+      <EntityTypeMapping TypeName="Models.TourType">
+        <MappingFragment StoreEntitySet="tblTourType">
+          <ScalarProperty Name="TourTypeName" ColumnName="TourTypeName" />
+          <ScalarProperty Name="TourTypeID" ColumnName="TourTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tours">
+      <EntityTypeMapping TypeName="Models.Tour">
+        <MappingFragment StoreEntitySet="tblTour">
+          <ScalarProperty Name="TourImageID" ColumnName="TourImageID" />
+          <ScalarProperty Name="TourDuration" ColumnName="TourDuration" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="TourEndDate" ColumnName="TourEndDate" />
+          <ScalarProperty Name="TourStartDate" ColumnName="TourStartDate" />
+          <ScalarProperty Name="TourPrice" ColumnName="TourPrice" />
+          <ScalarProperty Name="TourLocationID" ColumnName="TourLocationID" />
+          <ScalarProperty Name="TourOwnerID" ColumnName="TourOwnerID" />
+          <ScalarProperty Name="TourTypeID" ColumnName="TourTypeID" />
+          <ScalarProperty Name="TourCode" ColumnName="TourCode" />
+          <ScalarProperty Name="TourDescription" ColumnName="TourDescription" />
+          <ScalarProperty Name="TourName" ColumnName="TourName" />
+          <ScalarProperty Name="TourID" ColumnName="TourID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Images">
+      <EntityTypeMapping TypeName="Models.Image">
+        <MappingFragment StoreEntitySet="tblImage">
+          <ScalarProperty Name="ImageData" ColumnName="ImageData" />
+          <ScalarProperty Name="ImageSize" ColumnName="ImageSize" />
+          <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+          <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

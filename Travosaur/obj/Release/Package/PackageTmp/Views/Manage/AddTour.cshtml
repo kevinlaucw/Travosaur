@@ -1,0 +1,251 @@
+﻿@model Travosaur.Models.ManageTourViewModel
+@{
+    ViewBag.Title = "Add Tour";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (ViewBag.HasPhoneNumber == "false")
+{
+    <div>
+        <p>
+            You need to @Html.ActionLink("add a phone number", "AddPhoneNumber", "Manage") to add a tour.
+        </p>
+    </div>
+}
+else
+{
+    using (Html.BeginForm("AddTour", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @*<h4>Add Tour</h4>*@
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.TourName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TourName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TourName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CityID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <p>
+                        @Html.DropDownListFor(model => model.icountryid, (SelectList)ViewBag.CountryList, "--Select a Country--", new { @class = "form-control" })
+                    </p>
+                    <p>   
+                        @Html.DropDownListFor(model => model.istateid, (IEnumerable<SelectListItem>)ViewBag.StateList, "--Select a State--", new { @class = "form-control" })
+                    </p>
+                    <p>
+                        @Html.DropDownListFor(model => model.icityid, (IEnumerable<SelectListItem>)ViewBag.CityList, "--Select a City--", new { @class = "form-control" })
+                    </p> 
+                    <p>
+                        Location not found in the list? @Html.ActionLink("Contact Us", "Contact", "Home")
+                    </p>
+                </div>              
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ShortDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.ShortDescription, htmlAttributes: new { @class = "form-control addTour-shortdesc" })
+                    @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Description, htmlAttributes: new { @class = "form-control addTour-description" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.TourCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TourCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TourCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Currency, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Currency, (SelectList)ViewBag.CurrencyList, "--Select a Currency--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Currency, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.StartDate, "{0:yyyy-MM-dd}", htmlAttributes: new { @class = "form-control datepicker addTour-startdate", @placeholder = "YYYY-MM-DD" })
+                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.EndDate, "{0:yyyy-MM-dd}", htmlAttributes: new { @class = "form-control datepicker addTour-enddate", @placeholder = "YYYY-MM-DD" })
+                    @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                </div>
+            </div>         
+            <div class="form-group">
+                @Html.Label("Language", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">                    
+                    @Html.CheckBoxFor(model => model.English, new { @class = "addTour-checkbox" }) 
+                    @Html.LabelFor(model => model.English, htmlAttributes: new { @class = "addTour-language" })   
+                                     
+                    <span style="margin-right:20px"></span>
+                                     
+                    @Html.CheckBoxFor(model => model.Chinese, new { @class = "addTour-checkbox" })
+                    @Html.LabelFor(model => model.Chinese, htmlAttributes: new { @class = "addTour-language" })
+
+                    <span style="margin-right:20px"></span>
+
+                    @Html.CheckBoxFor(model => model.Indian, new { @class = "addTour-checkbox" })
+                    @Html.LabelFor(model => model.Indian, htmlAttributes: new { @class = "addTour-language" })
+
+                    <br />
+
+                    @Html.CheckBoxFor(model => model.Korean, new { @class = "addTour-checkbox" })
+                    @Html.LabelFor(model => model.Korean, htmlAttributes: new { @class = "addTour-language" })
+
+                    <span style="margin-right:20px"></span>
+
+                    @Html.CheckBoxFor(model => model.Japanese, new { @class = "addTour-checkbox" })
+                    @Html.LabelFor(model => model.Japanese, htmlAttributes: new { @class = "addTour-language" })
+
+                    <p>Select multiple for bilingual. Need more languages? @Html.ActionLink("Contact Us", "Contact", "Home")</p>
+                    @Html.ValidationMessage("CustomLanguageError", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DurationDay, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DurationDay, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DurationDay, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DurationHour, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DurationHour, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DurationHour, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.AssemblingTimeString, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AssemblingTimeString, new { htmlAttributes = new { @class = "form-control", @placeholder = "HH:MM" } })
+                    @Html.ValidationMessageFor(model => model.AssemblingTimeString, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DepartureTimeString, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DepartureTimeString, new { htmlAttributes = new { @class = "form-control", @placeholder = "HH:MM" } })
+                    @Html.ValidationMessageFor(model => model.DepartureTimeString, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ReturnTimeString, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ReturnTimeString, new { htmlAttributes = new { @class = "form-control", @placeholder = "HH:MM" } })
+                    @Html.ValidationMessageFor(model => model.ReturnTimeString, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.RedirectURL, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.RedirectURL, new { htmlAttributes = new { @class = "form-control", @placeholder = "http://" } })
+                    @Html.ValidationMessageFor(model => model.RedirectURL, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Term, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Term, htmlAttributes: new { @class = "form-control addTour-term" })
+                    @Html.ValidationMessageFor(model => model.Term, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.File, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.File, new { type = "file" })
+                    Size Limit: 8 MB
+                    <p>@Html.ValidationMessage("CustomImageError", new { @class = "text-danger" })</p>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                   @Html.CheckBoxFor(model => model.Active, new { @class = "addTour-active" })
+                   @Html.ValidationMessageFor(model => model.Active, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to My Listings", "MyListings")
+    </div>
+
+    @section Scripts {
+        <script>
+        $("#icountryid").change(function () {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("getStateJson", "Manage")',
+                data: { countryId: $("#icountryid > option:selected").attr("value") },
+                success: function (data) {
+                    var items = [];
+                    items.push("<option>--Select a State--</option>");
+                    $.each(data, function () {
+                        items.push("<option value=" + this.Value + ">" + this.Text + "</option>");
+                    });
+                    $("#istateid").html(items.join(' '));
+                }
+            })
+        });
+
+        $("#istateid").change(function () {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("getCityJson", "Manage")',
+                data: { stateId: $("#istateid > option:selected").attr("value"), countryId: $("#icountryid > option:selected").attr("value") },
+                success: function (data) {
+                    var items = [];
+                    items.push("<option>--Select a City--</option>");
+                    $.each(data, function () {
+                        items.push("<option value=" + this.Value + ">" + this.Text + "</option>");
+                    });
+                    $("#icityid").html(items.join(' '));
+                }
+            })
+
+        });
+        </script>
+
+        <script type="text/javascript">
+                $.fn.datepicker.defaults.format = "yyyy-mm-dd";
+                $('.datepicker').datepicker(); //Initialise any date pickers
+        </script>
+
+        @Scripts.Render("~/bundles/jqueryval")
+
+    }
+}
+
+

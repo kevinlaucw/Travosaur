@@ -1,0 +1,162 @@
+﻿@model Travosaur.Models.Subscriber
+@{
+    ViewBag.Title = "Travosaur";
+}
+
+<div id="my-carousel" class="carousel slide home-slider" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#my-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#my-carousel" data-slide-to="1"></li>
+        <li data-target="#my-carousel" data-slide-to="2"></li>
+        <li data-target="#my-carousel" data-slide-to="3"></li>
+        <li data-target="#my-carousel" data-slide-to="4"></li>
+        <li data-target="#my-carousel" data-slide-to="5"></li>
+        <li data-target="#my-carousel" data-slide-to="6"></li>
+        <li data-target="#my-carousel" data-slide-to="7"></li>
+        <li data-target="#my-carousel" data-slide-to="8"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="item active carousel-inner-img">
+            <img src="~/Content/Images/slide2.png" />
+        </div>
+        <div class="item carousel-inner-img">
+            <img src="~/Content/Images/slide3.png" />
+        </div>
+        <div class="item carousel-inner-img">
+            <img src="~/Content/Images/slide4.png" />
+        </div>
+        <div class="item carousel-inner-img">
+            <img src="~/Content/Images/slide5.png" />
+        </div>
+        <div class="item carousel-inner-img">
+            <img src="~/Content/Images/slide6.png" />
+        </div>
+        <div class="item carousel-inner-img">
+            <img src="~/Content/Images/slide7.png" />
+        </div>
+        <div class="item carousel-inner-img">
+            <img src="~/Content/Images/slide8.png" />
+        </div>
+        <div class="item carousel-inner-img">
+            <img src="~/Content/Images/slide9.png" />
+        </div>
+        <div class="item carousel-inner-img">
+            <img src="~/Content/Images/slide10.png" />
+        </div>
+    </div>
+    <a class="left carousel-control" href="#my-carousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#my-carousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>
+
+<form method="post">
+    <div class="home-search">
+        <input class="input home-search-textbox form-control" name="searchString" type="text" placeholder="Enter a destination, attraction or tour" />&nbsp;
+        <button type="submit" class="btn btn-default home-search-button" aria-label="Search" value="Search" name="action">
+            <span class="glyphicon glyphicon glyphicon-search" aria-hidden="true"></span>
+        </button>
+    </div>
+</form>
+
+<br />
+
+<div class="home-container">
+
+    <div class="row">
+        <div class="col-md-7 home-1-cor">
+            <a href="~/Tour?searchString=Flinders">
+                <img class="img-responsive home-1-cor-img" src="~/Content/Images/flinders.png" alt="">
+            </a>
+        </div>
+        <div class="col-md-5">
+            <h3>Flinders Station</h3>
+            <h5>Melbourne</h5>
+            <p>
+                Flinders Street station is one of the popular and magnificient landmarks that represents Melbourne.
+                It is one of the city’s famous meeting places.<br /><br />
+                “Meet me under the Clocks” has been used by generations of Melburnians. <br /><br />
+                The building was built in 1854 and completed in 1910.
+                It was designed by Fawcett & Ashworth with French Renaissance style that included a large bronze dome and tall clock tower.
+            </p>
+            <a class="btn btn-primary" href="~/Tour?searchString=Flinders">View Tour <span class="glyphicon glyphicon-chevron-right"></span></a>
+        </div>
+    </div>
+
+    <br />
+    
+    <div class="row">
+        <div class="col-md-12">
+            <p class="home-heading-1">Explore & Discover</p>
+            <p class="home-heading-1-subtext">Discover and be amazed with new and inspiring places</p>
+        </div>
+        <div class="col-md-4 home-listbox">
+            <a href="~/Tour?searchString=Degraves">
+                <img class="img-responsive home-listbox-img" src="~/Content/Images/degraves.png" />
+            </a>
+            <p class="home-listbox-text">Degraves St</p>
+        </div>
+        <div class="col-md-4 home-listbox">
+            <a href="~/Tour?searchString=Macedon">
+                <img class="img-responsive home-listbox-img" src="~/Content/Images/autumn.png" />
+            </a>
+            <p class="home-listbox-text">Mt Macedon</p>
+        </div>
+        <div class="col-md-4 home-listbox">
+            <a href="~/Tour?searchString=Brunch">
+                <img class="img-responsive home-listbox-img" src="~/Content/Images/brunch.png" />
+            </a>
+            <p class="home-listbox-text">Coffee & Brunch</p>
+        </div>
+
+        <div class="col-md-4 home-listbox">
+            <a href="~/Tour?searchString=Museum">
+                <img class="img-responsive home-listbox-img" src="~/Content/Images/museum.png" />
+            </a>
+            <p class="home-listbox-text">Museum</p>
+        </div>
+        <div class="col-md-4 home-listbox">
+            <a href="~/Tour?searchString=Autumn">
+                <img class="img-responsive home-listbox-img" src="~/Content/Images/barrack.png" />
+            </a>
+            <p class="home-listbox-text">Autumn Season</p>
+        </div>
+        <div class="col-md-4 home-listbox">
+            <a href="~/Tour?searchString=Coffee">
+                <img class="img-responsive home-listbox-img" src="~/Content/Images/degraves.png" />
+            </a>
+            <p class="home-listbox-text">Coffee Laneway</p>
+        </div>
+    </div>
+
+    <form method="post">
+        <div class="row">
+            <div class="col-md-12 home-subscribe">
+                <p class="home-subscribe-label text-center">Subscribe with us and get the exclusive deals!</p>
+                <p class="text-center">
+                  @Html.EditorFor(model => model.Email, new
+                     {
+                         htmlAttributes = new
+                         {
+                             @name = "subscriber",
+                             @class = "input home-subscribe-textbox form-control",
+                             @placeholder = "Enter email here",
+                         }
+                     })
+
+                    &nbsp;
+                    <input class="btn btn-primary btn-lg home-subscribe-button" id="btnSubscribe" type="submit" value="Subscribe" name="action" /><br />
+                    @ViewBag.Subscribe<br />
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </p>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

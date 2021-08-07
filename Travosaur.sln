@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travosaur", "Travosaur\Travosaur.csproj", "{5960D823-1A50-4066-AE24-C9329854CA01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travosaur.Tests", "Travosaur.Tests\Travosaur.Tests.csproj", "{AAF49109-EEC2-4BCC-A3C4-55D8046B3163}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5960D823-1A50-4066-AE24-C9329854CA01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5960D823-1A50-4066-AE24-C9329854CA01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5960D823-1A50-4066-AE24-C9329854CA01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5960D823-1A50-4066-AE24-C9329854CA01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAF49109-EEC2-4BCC-A3C4-55D8046B3163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAF49109-EEC2-4BCC-A3C4-55D8046B3163}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAF49109-EEC2-4BCC-A3C4-55D8046B3163}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAF49109-EEC2-4BCC-A3C4-55D8046B3163}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

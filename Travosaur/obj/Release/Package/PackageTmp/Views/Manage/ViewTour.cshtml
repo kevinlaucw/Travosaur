@@ -1,0 +1,179 @@
+﻿@model Travosaur.Models.Tour
+@{
+    ViewBag.Title = "View Tour";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (ViewBag.HasPhoneNumber == "false")
+{
+    <div>
+        <p>
+            You need to @Html.ActionLink("add a phone number", "AddPhoneNumber", "Manage") to add a tour.
+        </p>
+    </div>
+}
+else
+{
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.TourName, htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">
+                @Model.TourName
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CityID, htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">
+                @ViewBag.CityName, @ViewBag.StateName, @ViewBag.CountryName
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ShortDescription, htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">
+                @Model.ShortDescription
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">
+                @Html.Raw(HttpUtility.HtmlDecode(Model.Description))
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TourCode, htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">
+                @Model.TourCode
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Currency, htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">
+                @Model.Currency
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">
+                @Model.Price.ToString("0.00")
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">
+                @String.Format("{0:D}", Model.StartDate)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">
+                @String.Format("{0:D}", Model.EndDate)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Language", htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">
+                @if (Model.English == true)
+                {
+                    @Html.LabelFor(model => model.English, htmlAttributes: new { @class = "addTour-language" })
+                    <span style="margin-right:10px"></span>
+                }
+
+                @if (Model.Chinese == true)
+                {
+                    @Html.LabelFor(model => model.Chinese, htmlAttributes: new { @class = "addTour-language" })
+                    <span style="margin-right:10px"></span>
+                }
+
+                @if (Model.Indian == true)
+                {
+                    @Html.LabelFor(model => model.Indian, htmlAttributes: new { @class = "addTour-language" })
+                    <span style="margin-right:10px"></span>
+                }
+
+                @if (Model.Korean == true)
+                {
+                    @Html.LabelFor(model => model.Korean, htmlAttributes: new { @class = "addTour-language" })
+                    <span style="margin-right:10px"></span>
+                }
+
+                @if (Model.Japanese == true)
+                {
+                    @Html.LabelFor(model => model.Japanese, htmlAttributes: new { @class = "addTour-language" })
+                    <span style="margin-right:10px"></span>
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DurationDay, htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">
+                @Model.DurationDay
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DurationHour, htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">
+                @Model.DurationHour
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AssemblingTime, htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">
+                @Model.AssemblingTime
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DepartureTime, htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">
+                @Model.DepartureTime
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ReturnTime, htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">
+                @Model.ReturnTime
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.RedirectURL, htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">
+                <a href="@Model.RedirectURL" target="_blank">@Model.RedirectURL</a>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Term, htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">
+                @Model.Term
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageData, htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">
+                <img class="img-responsive tour-listbox-img" src="data:image/png;base64, @Convert.ToBase64String(Model.ImageData, 0, Model.ImageData.Length)" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label-viewtour col-md-2" })
+            <div class="col-md-10">               
+                @if (Model.Active == true)
+                {
+                    <span>Yes</span>
+                }
+                else
+                {
+                    <span>No</span>
+                }                
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("Edit", "EditTour", new { id = Model.TourID }, new { @class = "btn btn-default" } )
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to My Listings", "MyListings")
+</div>

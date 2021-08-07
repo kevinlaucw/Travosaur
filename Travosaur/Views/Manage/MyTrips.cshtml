@@ -1,0 +1,139 @@
+﻿@model PagedList.IPagedList<Travosaur.Models.TourViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "My Trips";
+}
+
+@*<h2>@ViewBag.Title</h2>*@
+
+<div class="row tour-container">
+
+        @if ((Model?.Count() ?? 0) == 0)
+        {
+            <div class="no-records">
+                You have not booked or saved any trips
+            </div>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+
+                <div class="col-md-4 tour-listbox">
+                    <a href="@Html.DisplayFor(modelItem => item.RedirectURL)" target="_blank">
+                        <img class="img-responsive tour-listbox-img" src="data:image/png;base64, @Convert.ToBase64String(item.ImageData, 0, item.ImageData.Length)" />
+                    </a>
+                    <div class="tour-listbox-info">
+                        <div class="tour-listbox-pricetag">
+                            <p class="tour-listbox-from">From</p>
+                            <span class="tour-listbox-currency">@Html.DisplayFor(modelItem => item.Currency)</span>
+                            <span class="tour-listbox-price">
+                                @if (item.Price % 1 == 0)
+                                {
+                                    @Html.DisplayFor(modelItem => item.RoundedPrice)
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                }
+                            </span>
+                        </div>
+                        <a href="@Html.DisplayFor(modelItem => item.RedirectURL)" target="_blank">
+                            <p class="tour-listbox-name">@Html.DisplayFor(modelItem => item.TourName)</p>
+                        </a>
+                        <p class="tour-listbox-location">@Html.DisplayFor(modelItem => item.CityName), @Html.DisplayFor(modelItem => item.CountryName)</p>
+                        <p class="tour-listbox-line"><hr /></p>
+                        <p class="tour-listbox-desc">
+                            @Html.DisplayFor(modelItem => item.ShortDescription)
+                            <a href="@Html.DisplayFor(modelItem => item.RedirectURL)">show more &raquo;</a>
+                        </p>
+                        <p class="tour-listbox-line"><hr /></p>
+                        <p class="tour-listbox-footer">
+
+                            @if (item.DurationDay != 0)
+                            {
+                                @Html.DisplayFor(modelItem => item.DurationDay)
+                                if (item.DurationDay == 1)
+                                {
+                                    <span>day</span>
+                                }
+                                else
+                                {
+                                    <span>days</span>
+                                }
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.DurationHour)
+                                if (item.DurationHour == 1)
+                                {
+                                    <span>hour</span>
+                                }
+                                else
+                                {
+                                    <span>hours</span>
+                                }
+                            }
+
+                            @if (item.English)
+                            {
+                                <span>/ English</span>
+
+                                if (item.Chinese)
+                                {
+                                    <span> + 中文</span>
+                                }
+                                else if (item.Indian)
+                                {
+                                    <span> + हिंदी</span>
+                                }
+                                else if (item.Korean)
+                                {
+                                    <span> + 한국어</span>
+                                }
+                                else if (item.Japanese)
+                                {
+                                    <span> + 日本語</span>
+                                }
+                                else
+                                {
+                                    <span></span>
+                                }
+                            }
+                            else
+                            {
+                                if (item.Chinese)
+                                {
+                                    <span>/ 中文</span>
+                                }
+                                else if (item.Indian)
+                                {
+                                    <span>/ हिंदी</span>
+                                }
+                                else if (item.Korean)
+                                {
+                                    <span>/ 한국어</span>
+                                }
+                                else if (item.Japanese)
+                                {
+                                    <span>/ 日本語</span>
+                                }
+                                else
+                                {
+                                    <span></span>
+                                }
+                            }
+                            <a href="#" class="float-right">@Html.DisplayFor(modelItem => item.CreatedByName)</a>
+                        </p>
+                    </div>
+                </div>
+
+            }
+        }
+</div>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("MyTrips", "Manage", new { page }))

@@ -1,0 +1,258 @@
+﻿@model Travosaur.Models.Tour
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Tour</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.City.CityName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.City.CityName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TourName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TourName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ShortDescription)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ShortDescription)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TourCode)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TourCode)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TourTypeID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TourTypeID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Currency)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Currency)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EndDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DateCreated)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CreatedBy)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.LastUpdated)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.LastUpdated)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.LastUpdatedBy)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.LastUpdatedBy)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DurationDay)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DurationDay)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DurationHour)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DurationHour)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.AssemblingTime)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AssemblingTime)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DepartureTime)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DepartureTime)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ReturnTime)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ReturnTime)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ImageData)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ImageData)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RedirectURL)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RedirectURL)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Term)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Term)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.English)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.English)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Chinese)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Chinese)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Indian)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Indian)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Japanese)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Japanese)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Korean)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Korean)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Active)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Active)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Deleted)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Deleted)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.TourID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

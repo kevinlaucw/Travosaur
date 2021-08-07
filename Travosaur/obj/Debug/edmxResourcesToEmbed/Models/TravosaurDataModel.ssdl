@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblImage">
+    <Key>
+      <PropertyRef Name="ImageID" />
+    </Key>
+    <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImageName" Type="nvarchar" MaxLength="255" />
+    <Property Name="ImageSize" Type="int" />
+    <Property Name="ImageData" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tblTour">
+    <Key>
+      <PropertyRef Name="TourID" />
+    </Key>
+    <Property Name="TourID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TourName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="TourDescription" Type="varchar" MaxLength="500" />
+    <Property Name="TourCode" Type="varchar" MaxLength="50" />
+    <Property Name="TourTypeID" Type="int" />
+    <Property Name="TourOwnerID" Type="int" />
+    <Property Name="TourLocationID" Type="int" />
+    <Property Name="TourPrice" Type="money" />
+    <Property Name="TourStartDate" Type="datetime" />
+    <Property Name="TourEndDate" Type="datetime" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
+    <Property Name="LastUpdated" Type="datetime" />
+    <Property Name="LastUpdatedBy" Type="varchar" MaxLength="100" />
+    <Property Name="TourDuration" Type="int" />
+    <Property Name="TourImageID" Type="int" />
+  </EntityType>
+  <EntityType Name="tblTourType">
+    <Key>
+      <PropertyRef Name="TourTypeID" />
+    </Key>
+    <Property Name="TourTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TourTypeName" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ModelsStoreContainer">
+    <EntitySet Name="tblImage" EntityType="Self.tblImage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTour" EntityType="Self.tblTour" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTourType" EntityType="Self.tblTourType" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

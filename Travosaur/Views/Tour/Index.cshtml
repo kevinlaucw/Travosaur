@@ -1,0 +1,195 @@
+﻿@model PagedList.IPagedList<Travosaur.Models.TourViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Travosaur";
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        $.fn.datepicker.defaults.format = "yyyy-mm-dd";
+        $('.datepicker').datepicker(); //Initialise any date pickers
+    </script>
+}
+
+<div class="tour-search">
+    <div id="formSection">
+        <form method="post" id="tourForm">
+            <table>
+                <tr>
+                    @*<td style="padding-right: 10px">Destination</td>*@
+                    <td class="tour-search-first-row">
+                        <input class="input tour-search-textbox form-control" name="searchString" value="@ViewBag.SearchString" type="text" placeholder="Enter a destination, attraction or tour" />
+                        <button type="submit" class="btn btn-default tour-search-button" aria-label="Search" name="action">
+                            <span class="glyphicon glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button><br />
+                    </td>
+                </tr>
+                <tr>
+                    @*<td>Date</td>*@
+                    <td class="tour-search-second-row">
+                        <input class="datepicker form-control tour-search-fromdate" name="fromDate" value="@ViewBag.FromDate" placeholder="From Date" />
+                        &nbsp;to&nbsp;
+                        <input class="datepicker form-control tour-search-todate" name="toDate" value="@ViewBag.ToDate" placeholder="To Date" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tour-search-third-row">                 
+                        @Html.DropDownList("fromPrice", (SelectList)ViewBag.FromPriceList, new { @class = "tour-search-price form-control" })
+                        &nbsp;to&nbsp;
+                        @Html.DropDownList("toPrice", (SelectList)ViewBag.ToPriceList, new { @class = "tour-search-price form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tour-search-fourth-row">
+                        <input type="checkbox" class="tour-search-english" name="english" @ViewBag.CheckedEnglish onclick="this.form.submit();" />&nbsp;English&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" class="tour-search-chinese" name="chinese" @ViewBag.CheckedChinese onclick="this.form.submit();" />&nbsp;中文&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" class="tour-search-indian" name="indian" @ViewBag.CheckedIndian onclick="this.form.submit();" />&nbsp;हिंदी<br />
+                        <input type="checkbox" class="tour-search-korean" name="korean" @ViewBag.CheckedKorean onclick="this.form.submit();" />&nbsp;한국어&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" class="tour-search-japanese" name="japanese" @ViewBag.CheckedJapanese onclick="this.form.submit();" />&nbsp;日本語
+
+                        <!-- if checkbox not checked, form will only submit the hidden values (""). if checked, then form will pick up the checkbox value ("on") -->
+                        <input type="hidden" name="english" value="" />
+                        <input type="hidden" name="chinese" value="" />
+                        <input type="hidden" name="indian" value="" />
+                        <input type="hidden" name="korean" value="" />
+                        <input type="hidden" name="japanese" value="" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+<div class="row tour-container">
+
+    @if ((Model?.Count() ?? 0) == 0)
+    {
+        <center>
+            <span>No tours match the search criteria</span>
+        </center>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+
+            <div class="col-md-4 tour-listbox">
+                <a href="@Html.DisplayFor(modelItem => item.RedirectURL)" target="_blank">
+                    <img class="img-responsive tour-listbox-img" src="data:image/png;base64, @Convert.ToBase64String(item.ImageData, 0, item.ImageData.Length)" />
+                </a>
+                <div class="tour-listbox-info">
+                    <div class="tour-listbox-pricetag">
+                        <p class="tour-listbox-from">From</p>
+                        <span class="tour-listbox-currency">@Html.DisplayFor(modelItem => item.Currency)</span>
+                        <span class="tour-listbox-price">
+                            @if (item.Price % 1 == 0)
+                            {
+                                @Html.DisplayFor(modelItem => item.RoundedPrice)
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.Price)
+                            }
+                        </span>
+                    </div>
+                    <a href="@Html.DisplayFor(modelItem => item.RedirectURL)" target="_blank">
+                        <p class="tour-listbox-name">@Html.DisplayFor(modelItem => item.TourName)</p>
+                    </a>
+                    <p class="tour-listbox-location">@Html.DisplayFor(modelItem => item.CityName), @Html.DisplayFor(modelItem => item.CountryName)</p>
+                    <p class="tour-listbox-line"><hr /></p>
+                    <p class="tour-listbox-desc">
+                        @Html.DisplayFor(modelItem => item.ShortDescription)
+                        <a href="@Html.DisplayFor(modelItem => item.RedirectURL)" target="_blank">show more &raquo;</a>
+                    </p>
+                    <p class="tour-listbox-line"><hr /></p>
+                    <p class="tour-listbox-footer">
+
+                        @if (item.DurationDay != 0)
+                        {
+                            @Html.DisplayFor(modelItem => item.DurationDay)
+                            @($" day{(item.DurationDay > 1 ? "s" : "")}")
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.DurationHour)
+                            @($" hour{(item.DurationHour > 1 ? "s" : "")}")
+                        }
+
+                        @if (item.English)
+                        {
+                            <span>/ English</span>
+                            
+                            if (item.Chinese)
+                            {
+                                <span> + 中文</span>
+                            }
+                            else if (item.Indian)
+                            {
+                                <span> + हिंदी</span>
+                            }
+                            else if (item.Korean)
+                            {
+                                <span> + 한국어</span>
+                            }
+                            else if (item.Japanese)
+                            {
+                                <span> + 日本語</span>
+                            }
+                            else
+                            {
+                                <span></span>
+                            }
+                        }
+                        else
+                        {
+                            if (item.Chinese)
+                            {
+                                <span>/ 中文</span>
+                            }
+                            else if (item.Indian)
+                            {
+                                <span>/ हिंदी</span>
+                            }
+                            else if (item.Korean)
+                            {
+                                <span>/ 한국어</span>
+                            }
+                            else if (item.Japanese)
+                            {
+                                <span>/ 日本語</span>
+                            }
+                            else
+                            {
+                                <span></span>
+                            }
+                        }
+                        <a href="TourOperator?userId=@Html.DisplayFor(modelItem => item.CreatedBy)" class="float-right">@Html.DisplayFor(modelItem => item.CreatedByName)</a>
+                    </p>
+                </div>
+            </div>
+
+        }
+    }
+</div>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(
+    Model,
+    page => Url.Action(
+        "Index",
+        new {
+            searchString = ViewBag.SearchString,
+            fromDate = ViewBag.FromDate,
+            toDate = ViewBag.ToDate,
+            english = ViewBag.English,
+            chinese = ViewBag.Chinese,
+            indian = ViewBag.Indian,
+            korean = ViewBag.Korean,
+            japanese = ViewBag.Japanese,
+            fromPrice = ViewBag.FromPrice,
+            toPrice = ViewBag.ToPrice,
+            page,
+        }))

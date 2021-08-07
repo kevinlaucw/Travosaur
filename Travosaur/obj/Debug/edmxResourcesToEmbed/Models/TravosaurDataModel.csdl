@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TravosaurDbContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TourTypes" EntityType="Models.TourType" />
+    <EntitySet Name="Tours" EntityType="Models.Tour" />
+    <EntitySet Name="Images" EntityType="Models.Image" />
+  </EntityContainer>
+  <EntityType Name="TourType">
+    <Key>
+      <PropertyRef Name="TourTypeID" />
+    </Key>
+    <Property Name="TourTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TourTypeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Tour">
+    <Key>
+      <PropertyRef Name="TourID" />
+    </Key>
+    <Property Name="TourID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TourName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TourDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TourCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TourTypeID" Type="Int32" />
+    <Property Name="TourOwnerID" Type="Int32" />
+    <Property Name="TourLocationID" Type="Int32" />
+    <Property Name="TourPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="TourStartDate" Type="DateTime" Precision="3" />
+    <Property Name="TourEndDate" Type="DateTime" Precision="3" />
+    <Property Name="Active" Type="Int32" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+    <Property Name="LastUpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TourDuration" Type="Int32" />
+    <Property Name="TourImageID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="ImageID" />
+    </Key>
+    <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImageName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ImageSize" Type="Int32" />
+    <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+</Schema>
